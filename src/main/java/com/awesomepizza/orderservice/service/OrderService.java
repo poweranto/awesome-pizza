@@ -48,7 +48,6 @@ public class OrderService {
 			throw new OrderAlreadyInProgressException("Unable to take a new order, an order is already being prepared.");
 		}
 		
-		
 		return orderRepository.findTopByStatusOrderByCreatedAtAsc(OrderStatus.PENDING).map(order -> {
 			order.setStatus(OrderStatus.IN_PROGRESS);
 			return orderRepository.save(order);

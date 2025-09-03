@@ -3,7 +3,6 @@ package com.awesomepizza.orderservice.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +16,6 @@ import com.awesomepizza.orderservice.service.OrderService;
 @RestController
 @RequestMapping(path = "/orders")
 public class OrdersController {
-
-	@Value("${custom-prop}")
-	private String customProp;
 
 	@Autowired
 	private OrderService orderService;
