@@ -1,0 +1,56 @@
+version: '3.7'
+name: awesomepizza
+
+services:
+
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    ports:
+      - "80:80" 
+    volumes:
+      - ./nginx-proxy/vhost.d:/etc/nginx/vhost.d:ro
+      # listen all Docker engine events (start, stop, env vars, etc...)
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - awesomepizza-net  
+
+  db:
+    image: mysql:8
+    ports:
+      # We need to expose this port to allow to connect to the database via DBMS
+      - "3306:3306"
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$MYSQL_ROOT_PASSWORD']
+      timeout: 20s
+      retries: 10
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+    volumes:
+      - ./data/mysql/:/docker-entrypoint-initdb.d
+      - data_volume:/var/lib/mysql
+    networks:
+      - awesomepizza-net  
+
+  api:
+    build: ../
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      VIRTUAL_HOST: "awesomepizza.demo.localhost"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - awesomepizza-net    
+
+volumes:
+  data_volume:
+  
+networks:
+  awesomepizza-net:  

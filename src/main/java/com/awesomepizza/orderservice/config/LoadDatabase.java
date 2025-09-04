@@ -14,16 +14,21 @@ public class LoadDatabase {
 	// LoggerFactory.getLogger(LoadDatabase.class);
 
 	@Bean
-	CommandLineRunner initDatabase(PizzaRepository repository) {
+	CommandLineRunner initDatabase(PizzaRepository pizzaRepository) {
 
+		// to avoid constraint exception
+		if(pizzaRepository.count() > 0) {
+			return args -> {};
+		}
+		
 		return args -> {
 			Pizza p1 = new Pizza("Margherita", "pomodoro, mozzarella, basilico");
 			Pizza p2 = new Pizza("Diavola", "pomodoro, mozzarella, basilico, salame piccante");
 			Pizza p3 = new Pizza("Capricciosa", "pomodoro, mozzarella, funghi, prosciutto cotto, carciofini e olive");
 			
-			repository.save(p1);
-			repository.save(p2);
-			repository.save(p3);
+			pizzaRepository.save(p1);
+			pizzaRepository.save(p2);
+			pizzaRepository.save(p3);
 		};
 	}
 }

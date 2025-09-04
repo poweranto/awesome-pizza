@@ -21,6 +21,13 @@ run application using maven wrapper CLI. It requires a JDK installed
 exec this command from the project root
 ./mvnw spring-boot:run
 
+Con Docker
+- eseguire il comando "docker compose up" dalla cartella .docker
+api: awesomepizza.demo.localhost/api
+app: awesomepizza.demo.localhost
+inserire l'host nel file hosts della macchina
+
+
 [test application]
 ./mvnw test
 
@@ -31,3 +38,4 @@ exec this command from the project root
 Sono test unitari sulle logiche di servizio più il controller per gli ordini
 service Layer - order service
 web Layer - order controller
+
