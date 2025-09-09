@@ -19,9 +19,10 @@ I seguenti endpoint restituiscono dati in formato JSON.
 In caso di malfunzionamenti/errori, restituiscono una risposta conforme allo standard [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457.html)
 
 ### GET /pizzas
-Restituisce l'elenco delle pizze disponibili
+Restituisce l'elenco delle pizze disponibili.
+
+**Response**
 ```json
-// Response
 [
   {
     "id": 1,
@@ -37,8 +38,9 @@ Restituisce l'elenco delle pizze disponibili
 
 ### GET /orders
 Restituisce tutti gli ordini, ordinati in base alla data di creazione
+
+**Response**
 ```json
-// Response
 [
   {
     "id": 22,
@@ -82,8 +84,8 @@ Restituisce tutti gli ordini, ordinati in base alla data di creazione
 ### POST /orders/pizza/:id
 Effettua un ordine per la pizza con un determinato id e restituisce l'ordine.
 
+**Response**
 ```json
-// Response
 {
     "id": 164,
     "code": "208FEB27",
@@ -101,8 +103,8 @@ Effettua un ordine per la pizza con un determinato id e restituisce l'ordine.
 ### POST /orders/next
 Imposta a `IN_PROGRESS` lo stato del prossimo ordine da processare (il più vecchio in stato `PENDING`) e restituisce l'ordine
 
+**Response**
 ```json
-// Response
 {
     "id": 164,
     "code": "208FEB27",
@@ -120,8 +122,8 @@ Imposta a `IN_PROGRESS` lo stato del prossimo ordine da processare (il più vecc
 ### POST /orders/:id/complete
 Completa l'ordine modificandone lo stato da `IN_PROGRESS` a `COMPLETED` e restituisce l'ordine
 
+**Response**
 ```json
-// Response
 {
     "id": 164,
     "code": "208FEB27",
