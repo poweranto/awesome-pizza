@@ -169,7 +169,7 @@ Verrà visualizzato l'elenco delle pizze in formato JSON
 
 - Importa il progetto come Maven Project
 - Attendi che tutte le dipendenze vengano scaricate.
-- Click destro sulla classe annotata con @SpringBootApplication (`com.awesomepizza.orderservice.OrderServiceApplication`) → Run As → Spring Boot App.
+- Click destro sulla classe annotata con @SpringBootApplication (`com.awesomepizza.orderservice.AwesomePizzaApplication`) → Run As → Spring Boot App.
 
 Lo schema del database verrà creato in automatico.
 

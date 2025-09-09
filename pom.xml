@@ -10,7 +10,7 @@
 	<groupId>com.awesomepizza</groupId>
 	<artifactId>awesome-pizza</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>awesome-pizza</name>
+	<name>awesome-pizza-api</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
